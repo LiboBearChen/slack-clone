@@ -17,7 +17,8 @@ function ChatInput({ channelName, channelId }) {
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       user: "Leif",
-      userImage: "ewfewfwefewfwe",
+      userImage:
+        "https://firebasestorage.googleapis.com/v0/b/manga-f8b68.appspot.com/o/uploads%2FNH-Agent_S_poster.png?alt=media&token=0906b6d7-d73f-4c15-9159-a0c6c41282f4",
     });
 
     setInput("");
@@ -29,7 +30,7 @@ function ChatInput({ channelName, channelId }) {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={`Message #ROOM`}
+          placeholder={`Message #${channelName}`}
         />
         <Button hidden type="submit" onClick={sendMessage}>
           SEND
