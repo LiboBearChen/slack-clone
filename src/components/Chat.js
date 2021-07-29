@@ -35,41 +35,45 @@ function Chat() {
 
   return (
     <ChatContainer>
-      <Header>
-        <HeaderLeft>
-          <h4>
-            <strong>#{roomDetails?.data().name}</strong>
-          </h4>
-          <StarBorderOutlinedIcon />
-        </HeaderLeft>
-        <HeaderRight>
-          <p>
-            <InfoOutlinedIcon />
-            Details
-          </p>
-        </HeaderRight>
-      </Header>
-      <ChatMessages>
-        {roomMessages?.docs.map((doc) => {
-          const { message, timestamp, user, userImage } = doc.data();
+      {roomDetails && roomMessages && (
+        <div>
+          <Header>
+            <HeaderLeft>
+              <h4>
+                <strong>#{roomDetails?.data().name}</strong>
+              </h4>
+              <StarBorderOutlinedIcon />
+            </HeaderLeft>
+            <HeaderRight>
+              <p>
+                <InfoOutlinedIcon />
+                Details
+              </p>
+            </HeaderRight>
+          </Header>
+          <ChatMessages>
+            {roomMessages?.docs.map((doc) => {
+              const { message, timestamp, user, userImage } = doc.data();
 
-          return (
-            <Message
-              key={doc.id}
-              message={message}
-              timestamp={timestamp}
-              user={user}
-              userImage={userImage}
-            />
-          );
-        })}
-        <ChatBottom ref={chatRef} />
-      </ChatMessages>
-      <ChatInput
-        chatRef={chatRef}
-        channelName={roomDetails?.data().name}
-        channelId={roomId}
-      />
+              return (
+                <Message
+                  key={doc.id}
+                  message={message}
+                  timestamp={timestamp}
+                  user={user}
+                  userImage={userImage}
+                />
+              );
+            })}
+            <ChatBottom ref={chatRef} />
+          </ChatMessages>
+          <ChatInput
+            chatRef={chatRef}
+            channelName={roomDetails?.data().name}
+            channelId={roomId}
+          />
+        </div>
+      )}
     </ChatContainer>
   );
 }
